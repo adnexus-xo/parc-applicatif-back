@@ -1,5 +1,6 @@
 package jar.controller;
 
+import jar.dto.LoginRequest;
 import jar.entity.Utilisateur;
 import jar.service.UtilisateurService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,17 @@ public class UtilisateurController {
         return ResponseEntity.ok(utilisateurService.findById(id));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    // Vérifie les credentials
+    Utilisateur user = utilisateurService.findByEmailAndPassword(request.getEmail(), request.getPassword());
+    if (user != null) {
+        return ResponseEntity.ok(user);
+    } else {
+        return ResponseEntity.status(401).body("Identifiants incorrects");
+    }
+    }
+
     @PostMapping
     public ResponseEntity<Utilisateur> save(@RequestBody Utilisateur utilisateur) {
         return ResponseEntity.ok(utilisateurService.save(utilisateur));
@@ -42,4 +54,6 @@ public class UtilisateurController {
         utilisateurService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
+
 }

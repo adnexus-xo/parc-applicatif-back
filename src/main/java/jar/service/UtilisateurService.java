@@ -29,4 +29,9 @@ public class UtilisateurService {
     public void delete(Integer id) {
         utilisateurRepository.deleteById(id);
     }
+
+    public Utilisateur findByEmailAndPassword(String email, String password) {
+    // Implémentation selon ton repository
+    return utilisateurRepository.findByEmailAndPassword(email, password);
+    }
 }
