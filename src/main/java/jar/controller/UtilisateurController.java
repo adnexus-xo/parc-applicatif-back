@@ -4,10 +4,13 @@ import jar.dto.LoginRequest;
 import jar.entity.Utilisateur;
 import jar.service.UtilisateurService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Map;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/utilisateurs")
@@ -40,6 +43,22 @@ public class UtilisateurController {
     @PostMapping
     public ResponseEntity<Utilisateur> save(@RequestBody Utilisateur utilisateur) {
         return ResponseEntity.ok(utilisateurService.save(utilisateur));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
+    String email = credentials.get("email");
+    String password = credentials.get("password");
+
+    // Utilise une méthode qui retourne un Optional vide si pas trouvé
+    Optional<Utilisateur> user = Optional.ofNullable(utilisateurService.findByEmailAndMotDePasse(email, password));
+    
+    if (user.isPresent()) {
+        return ResponseEntity.ok(user.get());
+    } else {
+        // Au lieu de faire planter le serveur, on renvoie une erreur 401 propre
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email ou mot de passe incorrect");
+    }
     }
 
     @PutMapping("/{id}")
