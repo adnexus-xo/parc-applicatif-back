@@ -30,7 +30,7 @@ public class UtilisateurController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
     // Vérifie les credentials
-    Utilisateur user = utilisateurService.findByEmailAndPassword(request.getEmail(), request.getPassword());
+    Utilisateur user = utilisateurService.findByEmailAndMotDePasse(request.getEmail(), request.getPassword());
     if (user != null) {
         return ResponseEntity.ok(user);
     } else {
