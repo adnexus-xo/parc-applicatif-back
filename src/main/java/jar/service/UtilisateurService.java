@@ -30,8 +30,8 @@ public class UtilisateurService {
         utilisateurRepository.deleteById(id);
     }
 
-    public Utilisateur findByEmailAndPassword(String email, String password) {
-    // Implémentation selon ton repository
-    return utilisateurRepository.findByEmailAndPassword(email, password);
+    public Utilisateur findByEmailAndMotDePasse(String email, String motDePasse) {
+    return utilisateurRepository.findByEmailAndMotDePasse(email, motDePasse)
+            .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }
 }
