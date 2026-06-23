@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/api/**")
-            .allowedOriginPatterns("https://peaceful-biscuit-fcfa10.netlify.app", "http://localhost:*")
+            .allowedOriginPatterns("https://peaceful-biscuit-fcfa10.netlify.app", "http://localhost:*", "https://peaceful-biscuit-fcfa10.netlify.app")
             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
             .allowedHeaders("*")
             .allowCredentials(true);
