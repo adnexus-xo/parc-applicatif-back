@@ -50,13 +50,13 @@ public class UtilisateurController {
     String email = credentials.get("email");
     String password = credentials.get("password");
 
-    // Utilise une méthode qui retourne un Optional vide si pas trouvé
+    // On cherche l'utilisateur
     Optional<Utilisateur> user = Optional.ofNullable(utilisateurService.findByEmailAndMotDePasse(email, password));
     
     if (user.isPresent()) {
         return ResponseEntity.ok(user.get());
     } else {
-        // Au lieu de faire planter le serveur, on renvoie une erreur 401 propre
+        // Renvoie une erreur 401 si les identifiants sont faux ou l'utilisateur introuvable
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email ou mot de passe incorrect");
     }
     }
