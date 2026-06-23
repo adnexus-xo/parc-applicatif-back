@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/dependdes")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class DependDeController {
 
     private final DependDeService dependDeService;
