@@ -63,8 +63,8 @@ public class UtilisateurController {
         Map<String, Object> response = new HashMap<>();
         response.put("id", user.getIdUtilisateur());
         response.put("email", user.getEmail());
-        response.put("nom", user.getNomUtilisateur());
-        response.put("prenom", user.getPrenomUtilisateur());
+        response.put("nomUtilisateur", user.getNomUtilisateur());
+        response.put("prenomUtilisateur", user.getPrenomUtilisateur());
         response.put("role", user.getRole());
         
         return ResponseEntity.ok(response);
