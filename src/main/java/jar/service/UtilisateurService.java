@@ -30,8 +30,15 @@ public class UtilisateurService {
         utilisateurRepository.deleteById(id);
     }
 
-    public Utilisateur findByEmailAndMotDePasse(String email, String motDePasse) {
+    /*public Utilisateur findByEmailAndMotDePasse(String email, String motDePasse) {
     return utilisateurRepository.findByEmailAndMotDePasse(email, motDePasse)
             .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
-    }
+    }*/
+   
+    public Utilisateur findByEmailAndMotDePasse(String email, String motDePasse) {
+    System.out.println(">>> EMAIL RECU: [" + email + "]");
+    System.out.println(">>> MDP RECU: [" + motDePasse + "]");
+    return utilisateurRepository.findByEmailAndMotDePasse(email, motDePasse)
+            .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+}
 }
