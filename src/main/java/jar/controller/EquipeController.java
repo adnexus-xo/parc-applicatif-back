@@ -11,6 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/equipes")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {
+    "https://peaceful-biscuit-fcfa10.netlify.app",
+    "https://parc-applicatif-front.vercel.app"
+}, allowCredentials = "true")
 public class EquipeController {
 
     private final EquipeService equipeService;

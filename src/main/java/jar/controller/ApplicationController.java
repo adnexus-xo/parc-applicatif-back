@@ -11,6 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/applications")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {
+    "https://peaceful-biscuit-fcfa10.netlify.app",
+    "https://parc-applicatif-front.vercel.app"
+}, allowCredentials = "true")
 public class ApplicationController {
 
     private final ApplicationService applicationService;

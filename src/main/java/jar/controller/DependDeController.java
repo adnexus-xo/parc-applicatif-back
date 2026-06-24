@@ -14,6 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/dependdes")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {
+    "https://peaceful-biscuit-fcfa10.netlify.app",
+    "https://parc-applicatif-front.vercel.app"
+}, allowCredentials = "true")
 public class DependDeController {
 
     private final DependDeService dependDeService;
