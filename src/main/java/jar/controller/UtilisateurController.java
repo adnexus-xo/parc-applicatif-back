@@ -55,7 +55,7 @@ public class UtilisateurController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
     try {
-        Utilisateur user = utilisateurService.findByEmailAndMotDePasse(request.getEmail(), request.getPassword());
+        Utilisateur user = utilisateurService.findByEmailAndMotDePasse(request.getEmail(), request.getMotDePasse());
         
         Map<String, Object> response = new HashMap<>();
         response.put("id", user.getIdUtilisateur());
