@@ -57,7 +57,6 @@ public class UtilisateurController {
     try {
         Utilisateur user = utilisateurService.findByEmailAndMotDePasse(request.getEmail(), request.getPassword());
         
-        // Retourne seulement les infos nécessaires, pas l'objet complet
         Map<String, Object> response = new HashMap<>();
         response.put("id", user.getIdUtilisateur());
         response.put("email", user.getEmail());
