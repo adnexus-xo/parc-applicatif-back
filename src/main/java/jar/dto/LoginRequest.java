@@ -1,9 +1,13 @@
-package jar.dto; 
- 
-import lombok.Data; 
- 
-@Data 
-public class LoginRequest { 
-    private String email; 
-    private String password; 
-} 
+package jar.dto;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+@Data
+public class LoginRequest {
+    @JsonProperty("email")
+    private String email;
+    
+    @JsonProperty("password")
+    private String password;
+}
