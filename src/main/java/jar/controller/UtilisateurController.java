@@ -5,6 +5,7 @@ import jar.entity.Utilisateur;
 import jar.service.UtilisateurService;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -26,16 +27,7 @@ public class UtilisateurController {
         return ResponseEntity.ok(utilisateurService.findById(id));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-    // Vérifie les credentials
-    Utilisateur user = utilisateurService.findByEmailAndMotDePasse(request.getEmail(), request.getPassword());
-    if (user != null) {
-        return ResponseEntity.ok(user);
-    } else {
-        return ResponseEntity.status(401).body("Identifiants incorrects");
-    }
-    }
+    
 
     @PostMapping
     public ResponseEntity<Utilisateur> save(@RequestBody Utilisateur utilisateur) {
@@ -55,5 +47,18 @@ public class UtilisateurController {
         return ResponseEntity.noContent().build();
     }
     
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    try {
+        Utilisateur user = utilisateurService.findByEmailAndMotDePasse(request.getEmail(), request.getPassword());
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Identifiants incorrects");
+        }
+    } catch (RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Identifiants incorrects");
+    }
+    }
 
 }
