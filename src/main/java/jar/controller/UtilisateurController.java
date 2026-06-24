@@ -17,7 +17,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/utilisateurs")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://peaceful-biscuit-fcfa10.netlify.app", allowCredentials = "true")
+@CrossOrigin(origins = {
+    "https://peaceful-biscuit-fcfa10.netlify.app",
+    "https://parc-applicatif-front.vercel.app"
+}, allowCredentials = "true")
 public class UtilisateurController {
 
     private final UtilisateurService utilisateurService;
