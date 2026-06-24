@@ -8,7 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/utilisateurs")
@@ -51,11 +55,16 @@ public class UtilisateurController {
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
     try {
         Utilisateur user = utilisateurService.findByEmailAndMotDePasse(request.getEmail(), request.getPassword());
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Identifiants incorrects");
-        }
+        
+        // Retourne seulement les infos nécessaires, pas l'objet complet
+        Map<String, Object> response = new HashMap<>();
+        response.put("id", user.getIdUtilisateur());
+        response.put("email", user.getEmail());
+        response.put("nom", user.getNomUtilisateur());
+        response.put("prenom", user.getPrenomUtilisateur());
+        response.put("role", user.getRole());
+        
+        return ResponseEntity.ok(response);
     } catch (RuntimeException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Identifiants incorrects");
     }
