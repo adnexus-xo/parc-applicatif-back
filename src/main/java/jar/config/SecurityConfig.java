@@ -1,4 +1,4 @@
-package jar.config;
+/*package jar.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,4 +27,4 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
         return http.build();
     }
-}
+}*/
